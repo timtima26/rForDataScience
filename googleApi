@@ -1,0 +1,14 @@
+
+devtools::install_github("flovv/RoogleVision")
+library(RoogleVision)
+install.packages('jpeg')
+library(jpeg)
+
+#進行帳戶驗證
+options("googleAuthR.client_secret" = "貼上剛才申請client_secret")
+options("googleAuthR.client_id" = "貼上剛才申請的client_id")
+options("googleAuthR.scopes.selected"=c("https://www.googleapis.com/auth/cloud-platform"))
+googleAuthR::gar_auth()
+
+label1 = getGoogleVisionResponse('https://i.imgur.com/MgpzkWU.jpg',feature = 'LABEL_DETECTION') 
+#函式中第一個變數放放圖片來源，可以是檔案位置或是圖片網址，feature裡的功能可以改參數，目前試了FACE_DETECTION、LABEL_DETECTION、LANDMARK_DETECTION
